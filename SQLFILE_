@@ -1,1 +1,163 @@
-hii
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| db                 |
+| information_schema |
+| mnrega             |
+| mysql              |
+| performance_schema |
+| que1db             |
+| que3               |
+| sb101_c4           |
+| sumedhdb           |
+| sys                |
++--------------------+
+10 rows in set (0.01 sec)
+
+mysql> use mnrega;
+Database changed
+mysql> create table BackendDev (
+    -> username varchar(20),
+    -> password varchar(20)
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> create table Projects (
+    -> ProjectNo int primary key auto_increment ,
+    -> PName varchar(20) ,
+    -> Location varchar(20)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> create table GramPanchayatMember (
+    -> ID int primary key auto_increment ,
+    -> GName varchar(20) not null ,
+    -> Location varchar(20) not null ,
+    -> username varchar(20) not null unique ,
+    -> password varchar(20) not null
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> create table p_g (
+    -> pid int not null ,
+    -> gid int not null,
+    -> foreign key (pid) references Projects(ProjectNO) ,
+    -> foreign key (gid) references GramPanchayatMember(ID)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> create table employee (
+    -> EmpId int primary key auto_increment ,
+    -> EmpName varchar(20) not null,
+    -> EmpGender varchar(1) not null,
+    -> EmpWage int not null,
+    -> EmpDutyDay int not null,
+    -> ProjAssigned int references Projects(ProjectNo),
+    -> GPOAssigned int  references GramPanchayatMember(ID)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into BackendDev values('sumedh' , 'sumedh');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from employee;
++-------+---------+-----------+---------+------------+--------------+-------------+
+| EmpId | EmpName | EmpGender | EmpWage | EmpDutyDay | ProjAssigned | GPOAssigned |
++-------+---------+-----------+---------+------------+--------------+-------------+
+|     1 | yogesh  | M         |     350 |          9 |            0 |           0 |
++-------+---------+-----------+---------+------------+--------------+-------------+
+1 row in set (0.01 sec)
+
+mysql> select * from projects;
++-----------+----------+----------+
+| ProjectNo | PName    | Location |
++-----------+----------+----------+
+|         1 | cleaning | Sasti    |
+|         2 | TREE     | Akola    |
+|         3 | Plant    | Wardha   |
+|         4 | river    | amravti  |
++-----------+----------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employee;
++-------+---------+-----------+---------+------------+--------------+-------------+
+| EmpId | EmpName | EmpGender | EmpWage | EmpDutyDay | ProjAssigned | GPOAssigned |
++-------+---------+-----------+---------+------------+--------------+-------------+
+|     1 | yogesh  | M         |     350 |          9 |            2 |           1 |
++-------+---------+-----------+---------+------------+--------------+-------------+
+1 row in set (0.00 sec)
+
+mysql> select * from grampanchayatmember;
++----+--------+----------+----------+----------+
+| ID | GName  | Location | username | password |
++----+--------+----------+----------+----------+
+|  1 | sagar  | Sasti    | sagar    | sagar    |
+|  2 | pawan  | satara   | pawan    | pawan    |
+|  3 | Nagesh | pune     | nagesh   | nagesh   |
++----+--------+----------+----------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee;
++-------+---------+-----------+---------+------------+--------------+-------------+
+| EmpId | EmpName | EmpGender | EmpWage | EmpDutyDay | ProjAssigned | GPOAssigned |
++-------+---------+-----------+---------+------------+--------------+-------------+
+|     1 | yogesh  | M         |     350 |          9 |            2 |           1 |
+|     2 | karan   | M         |     380 |          7 |            0 |           0 |
++-------+---------+-----------+---------+------------+--------------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from employee;
++-------+---------+-----------+---------+------------+--------------+-------------+
+| EmpId | EmpName | EmpGender | EmpWage | EmpDutyDay | ProjAssigned | GPOAssigned |
++-------+---------+-----------+---------+------------+--------------+-------------+
+|     1 | yogesh  | M         |     350 |          9 |            2 |           1 |
+|     2 | karan   | M         |     380 |          7 |            4 |           1 |
++-------+---------+-----------+---------+------------+--------------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from projects;
++-----------+----------+----------+
+| ProjectNo | PName    | Location |
++-----------+----------+----------+
+|         1 | cleaning | Sasti    |
+|         2 | TREE     | Akola    |
+|         3 | Plant    | Wardha   |
+|         4 | river    | amravti  |
+|         5 | power    | khamgoan |
+|         6 | godavari | patna    |
+|         7 | Farming  | Wadegoan |
++-----------+----------+----------+
+7 rows in set (0.01 sec)
+
+mysql> select * from employee;
++-------+---------+-----------+---------+------------+--------------+-------------+
+| EmpId | EmpName | EmpGender | EmpWage | EmpDutyDay | ProjAssigned | GPOAssigned |
++-------+---------+-----------+---------+------------+--------------+-------------+
+|     1 | yogesh  | M         |     350 |          9 |            2 |           1 |
+|     2 | karan   | M         |     380 |          7 |            4 |           1 |
++-------+---------+-----------+---------+------------+--------------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from employee;
++-------+---------+-----------+---------+------------+--------------+-------------+
+| EmpId | EmpName | EmpGender | EmpWage | EmpDutyDay | ProjAssigned | GPOAssigned |
++-------+---------+-----------+---------+------------+--------------+-------------+
+|     1 | yogesh  | M         |     350 |          9 |            2 |           1 |
+|     2 | karan   | M         |     380 |          7 |            4 |           1 |
+|     3 | Banti   | m         |     450 |         12 |            0 |           0 |
++-------+---------+-----------+---------+------------+--------------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee;
++-------+---------+-----------+---------+------------+--------------+-------------+
+| EmpId | EmpName | EmpGender | EmpWage | EmpDutyDay | ProjAssigned | GPOAssigned |
++-------+---------+-----------+---------+------------+--------------+-------------+
+|     1 | yogesh  | M         |     350 |          9 |            2 |           1 |
+|     2 | karan   | M         |     380 |          7 |            4 |           1 |
+|     3 | Banti   | m         |     450 |         12 |            7 |           1 |
++-------+---------+-----------+---------+------------+--------------+-------------+
+3 rows in set (0.00 sec)
+
+mysql>
