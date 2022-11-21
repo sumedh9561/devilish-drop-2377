@@ -1,4 +1,4 @@
-# MGNREGA console base project
+# MGNREGA Console Base Project
 
 MGNREGA
 
