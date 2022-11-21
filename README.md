@@ -1,4 +1,4 @@
-# devilish-drop-2377
+# MGNREGA console base project
 
 MGNREGA
 
